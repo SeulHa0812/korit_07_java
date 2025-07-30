@@ -75,10 +75,10 @@ public class Scanner01 {
 
         //배리어 없이 사용
         System.out.print("점수를 입력하세요 >>> ");
-        double score = scanner.nextDouble();
+        double score1 = scanner.nextDouble();
         System.out.print("이름을 입력하세요 >>> ");
-        String name = scanner.next();
-        System.out.println(name + " 학생의 점수는 " + score + "입니다.");
+        String name1 = scanner.next();
+        System.out.println(name1 + " 학생의 점수는 " + score1 + "입니다.");
 
 
 
