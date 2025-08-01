@@ -10,6 +10,7 @@ public class Method02 {
 
     // call4() 유형으로 작성 왜? -> 몇 줄 짜리인지 / 어떤 유형의 별찍기인지를 main에서 받을 예정
     public static String getStar(int rows, int option) {
+        //
         // 메서드 내에서만 사용하는 지역 변수(local variable) 선언 및 초기화
         String result = "";
         // 이 사이에 별찍기 관련 로직이 들어갈 예정

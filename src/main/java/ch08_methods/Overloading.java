@@ -57,9 +57,6 @@ public class Overloading {
         System.out.println("add(int a, int b, int c)");
         System.out.println("a + b + c = " + (a + b + c));
     }
-    // return = 반환값 o
-    // void + sout = 반환값 x, 콘솔창에만 출력
-    // sout 사용자에게 보여주기 위한 출력, return 계산 결과를 다른 곳에 전달하기 위한 반환
 
     public static void main(String[] args) {
         //메서드 호출 영역
