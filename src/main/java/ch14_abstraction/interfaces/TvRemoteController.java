@@ -39,30 +39,22 @@ public class TvRemoteController {
         System.out.println(volumeUpButton.onUp());
     }
 
-//    // 이제 이상에서 선언한 필드(객체)의 메서드를 호출하는 방법
-//    public void onPressedPowerButton() {
-//        powerButton.onPressed();
-//    }
-//
-//    public void onPressedChannelDownButton() {
-//        channelDownButton.onPressed();
-//    }
-//
-//    public void onDownChannelDownButton() {
-//        channelDownButton.onDown();
-//    }
-//
-//    public void onPressedChannelUpButton() {
-//        channelUpButton.onPressed();
-//    }
-//    //#1
-////    public String onUpChannelUpButton() {
-////        channelUpButton.onUp();
-////        return channelUpButton.onUp(); //onUp();의 결과값이 return "채널을 계속 " + super.onUp();
-////    }
-//    //#2
-//    public void onUpChannelUpButton() {
-//        System.out.println(channelUpButton.onUp());
-//    }
+    // 이제 이상에서 선언한 필드(객체)의 메서드를 호출하는 방법
+    public void onPressedPowerButton() {
+        powerButton.onPressed();
+    }
+
+    public void onPressedChannelDownButton() {
+        channelDownButton.onPressed();
+    }
+
+    public void onDownChannelDownButton() {
+        channelDownButton.onDown();
+    }
+
+    public void onPressedChannelUpButton() {
+        channelUpButton.onPressed();
+    }
+
 
 }
