@@ -9,6 +9,8 @@ public class CentralControl {
     }
 
 
+
+
     //method
     public void addDevice(Power device) {
         // Power의 자식 클래스에 해당하는 인스턴스들을
@@ -20,21 +22,28 @@ public class CentralControl {
         //그렇다면 필요한 기능이 배열 내에 null 값이 존재하는지에 대한 체크가 필요하다고
         //할 수 있음
         int emptyIndex = checkEmpty(); //메소드의 결과값을 변수 emptyIndex에 대입
-        if(emptyIndex == -1) {
+        if (emptyIndex == -1) {
             System.out.println("더 이상 장치를 연결할 수 없습니다.");
             return; //메서드 종료 키워드
         }
-        deviceArray[emptyIndex] = device; // private으로 적용해놔서 method 경유
+        deviceArray[emptyIndex] = device; // private 으로 적용해놔서 method 경유
         //public -> main 에서 그냥 바로 위의 코드를 집어넣으면 됨
-        System.out.println("장치가 연결되었습니다.");
+        System.out.println(device.getClass().getSimpleName() + "장치가 연결되었습니다.");
+        /*
+        .getClass() -> class name return 하는 method + 패키지 경로 포함해서 출력됨
+        .getClass().getSimpleName() -> class name만 출력됨
+        현재 method의 결과값을 가지고 다시 . 찍어서 그 다음 method 호출함
+        이상의 개념을 chaining method 라고 해서 return 값의 유형을 명확하게 알고 있어야
+        그 다음 어떤 method를 실행시킬 것인지를 알 수 있음
+         */
     }
 
     private int checkEmpty() { //메서드인데 private 사용 Main에서 굳이
         //몇 개나 더 전자제품을 추가할 수 있는지 알 필요가 없을 것 같아서
         // deviceArray 라는 배열에서 비어있는 index를 추출해야함
-        // i++ 니까 가장 발리 만나게 되는 null return
-        for ( int i = 0 ; i < deviceArray.length ; i++ ) {
-            if(deviceArray[i] == null) {
+        // i++ 니까 가장 빨리 만나게 되는 null return
+        for (int i = 0; i < deviceArray.length; i++) {
+            if (deviceArray[i] == null) {
                 return i; //즉 내열 내부에 element가 없다면 그 주소지를 return
             }
         }
@@ -45,4 +54,85 @@ public class CentralControl {
             나중에 위에 있는 addDevice() 메서드에서 if(checkEmpty() == -89234)로 쓰고 싶지 않으면 -1쓰는게 가장 보편적
          */
     }
+
+    public void powerOn() {
+        /*
+        해당 클래스의 필드인 Power[] 배열 내에 있는 객체들은 기본적으로
+        Power의 서브 클래스의 객체들
+        즉, on()/ off() method를 공통적으로 지니고 있음
+        그리고 Power 자료형으로 업캐스팅도 되어있음
+         */
+        for (int i = 0; i < deviceArray.length; i++) {
+            if (deviceArray[i] == null) {
+                System.out.println("장치가 없어 전원을 켜지 않았습니다.");
+                continue; //break; 반복문 즉시 종료, return; method를 즉시 종료
+                //continue; 현재 반복만 종료 그 다음 박복문으로 넘어감
+                //즉 deviceArray[3] 주소지에 객체가 없어 null이 있다면
+                //64번 라인의 조건문이 실행될텐데
+                //("장치가 없어 전원을 켜지 않았습니다."가 출력되고
+                //곧장 deviceArray[4]를 확인하게 됨
+            }
+            deviceArray[i].on();
+        }
+    }
+
+    public void powerOff() {
+        for (Power device : deviceArray) {
+            if (device == null) {
+                System.out.println("장치가 없어 전원을 끄지 않았습니다.");
+                continue;
+            }
+            device.off();
+        }
+    }
+
+    public void showInfo() {
+        for (int i = 0; i < deviceArray.length; i++) {
+            if (deviceArray[i] == null) {
+                System.out.println("슬롯 [ " + (i + 1) + " ] 번 : Empty");
+                continue;
+            }
+            System.out.println("슬롯 [ " + (i + 1) + " ] 번 : " + deviceArray[i].getClass().getSimpleName());
+        }
+    }
+
+    /*
+     이제 배열 내부를 돌면서 각 element들의 고유 메서드들을 실행시킬예정
+     논리적으로는 말이 안됨..
+     */
+    public void performSpecificMethod() {
+        for(Power device : deviceArray) {
+            if(device instanceof AirConditioner) { //power의 서브클래스가 잘못된 다운캐스팅을 하지 않도록 하는 조건문
+                AirConditioner airConditioner = (AirConditioner)device; //명시적 다운캐스팅
+                airConditioner.changeMode();
+            } else if (device instanceof Computer) {
+                Computer computer = (Computer)device;
+                computer.compute();
+            } else if (device instanceof LED) {
+                LED led = (LED) device;
+                led.changeColor();
+            } else if (device instanceof Mouse) {
+                Mouse mouse = (Mouse) device;
+                mouse.leftClick();
+            } else if (device instanceof Speaker) {
+                Speaker speaker = (Speaker) device;
+                speaker.changeEqual();
+            } else if (device instanceof Printer) {
+                Printer printer = (Printer) device;
+                printer.print();
+            } else if (device == null ) {
+                System.out.println("장치가 비어있습니다.");
+            } else { //아직 instanceof 연산자를 통해서 조건문을 추가하지 못한 class 및
+                //추후 update를 통해서 다른 기기들을 지원할 때는 } else 사이에 else if 문을 추가하면 됨.
+                System.out.println("아직 지원하지 않는 기기입니다.");
+            }
+
+
+        }
+    }
+
+
+
+
+
 }
