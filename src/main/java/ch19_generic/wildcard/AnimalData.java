@@ -26,7 +26,7 @@ public class AnimalData<T> {
 
         if(animal.getClass() == Human.class) {
             ((Human) animal).read(); //현재 필드에 들어간 animal 객체의 클래스를 확인하여
-            //(.getClass()를 통해서) 그것이 Human class라면
+            //(.getClass()를 통해서) 그것이 Human class 라면
             //Human class의 고유 메셔드인 .read() 호출
         } else if (animal.getClass() == Tiger.class) {
             ((Tiger)animal).hunt();

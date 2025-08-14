@@ -25,11 +25,10 @@ public class FieldTrip {
         int num = scanner.nextInt();
         scanner.nextLine();
 
-        String place = "";
         List<String> fieldTripList = new ArrayList<>();
         for ( int i = 0 ; i < num ; i++ ) {
             System.out.print((i+1) + "번 학생의 수학 여행지를 입력하세요 >>> ");
-            place = scanner.nextLine();
+            String place = scanner.nextLine();
             fieldTripList.add(place);
         }
         System.out.println();
@@ -46,6 +45,7 @@ public class FieldTrip {
 //        System.out.println(modifiedfieldList);
         Collections.sort(modifiedfieldList, Comparator.reverseOrder());
 //        System.out.println(modifiedfieldList);
+        System.out.println();
 
         for ( int k = 0 ; k < modifiedfieldList.size() ; k++ ) {
             if (k == 0) {
@@ -53,7 +53,7 @@ public class FieldTrip {
             }
             System.out.println(modifiedfieldList.get(k));
             if (k == modifiedfieldList.size() - 1) {
-                System.out.println("입니다.");
+                System.out.println("입니다."); //최적화 문제
             }
         }
 
