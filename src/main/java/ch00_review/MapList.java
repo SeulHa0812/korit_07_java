@@ -43,7 +43,7 @@ public class MapList {
             // List의 내부 Element로 들어옴
             // 그런데 Map의 내부에는 3 쌍의 Entry가 있다고 할 수 있음
             for (Map.Entry<String, Object> entry : customer.entrySet()) {
-                // 그러면 이제 각각의 Entry를 반복하게 됨.
+                // 그러면 이제 각각의 Entry를 반복하게 됨
                 System.out.println(entry);
             }
         }
